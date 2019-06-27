@@ -94,7 +94,7 @@ def main1(ap, args):
             for (i, (k, v)) in enumerate(info):
                 text = "{}: {}".format(k, v)
                 cv2.putText(frame, text, (10, H - ((i * 20) + 20)),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
 
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
@@ -105,15 +105,15 @@ def main1(ap, args):
 
     # close all windows
     cv2.destroyAllWindows()
-    evaluate(gt, totalJack, error, args["tracker"], args["video"])
+    #evaluate(gt, totalJack, error, args["tracker"], args["video"])
 
 if __name__ == '__main__':
 
     ap = argparse.ArgumentParser()
     ap.add_argument("-v", "--video", type=str, default="car1",
-        help="path to input video file")
+        help="path to input video directory")
     ap.add_argument("-t", "--tracker", type=str, default="mosse",
-        help="OpenCV object tracker type")
+        help="OpenCV object tracker type (kcf / csrt / mosse)")
     args = vars(ap.parse_args())
 
     main1(ap, args)
